@@ -1,0 +1,43 @@
+header.App-header {
+  background-color:#ffffff;
+}
+
+div.logo {
+  width:50%;
+  display:inline-block;
+}
+div.logo img {
+  margin:1rem;
+}
+
+div.nav {
+  display:inline-block;
+  text-align:right;
+  width:50%;
+}
+
+div.hamburger {
+  display:inline-block;
+  margin:2rem;
+}
+div.hamburger span {
+  height: 0.25rem;
+  width: 2rem;
+  background-color: #666666;
+  display: block;
+  margin-bottom: 7px;
+}
+
+/* Robots */
+section.robots {
+  padding:1rem;
+}
+section.robots .robot {
+  background-color:#ffffff;
+  text-align:center;
+  padding:1rem;
+  margin-bottom:2rem;
+}
+section.robots .robot img {
+  width:80%;
+}

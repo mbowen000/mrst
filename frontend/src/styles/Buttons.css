@@ -1,0 +1,36 @@
+button.button {
+    text-transform:uppercase;
+    padding:0.75rem 1.5rem;
+    border:3px solid #666666;
+    background-color:transparent;
+    border-radius:0px;
+    font-size:12pt;
+    font-weight:bold;
+}
+button.button:focus {
+    outline:0px; /* remove blue browser outline on focus */
+}
+
+button.button.primary {
+    color:#ec2624;
+    border-color:#ec2624;
+}
+button.button.primary:hover {
+    background-color:#ec2624;
+    color:#ffffff;
+    cursor:pointer;
+}
+button.button.primary:active {
+    background-color:#cf2020;
+}
+
+button.button:disabled {
+    color:#B3B3B3;
+    border-color:#B3B3B3;
+}
+button.button:disabled:hover {
+    color:#B3B3B3;
+    border-color:#B3B3B3;
+    background-color:transparent;
+    cursor:not-allowed;
+}

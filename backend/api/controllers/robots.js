@@ -1,5 +1,6 @@
 module.exports = {
-    robots: robots
+    robots: robots,
+    addVote: addVote
 }
 
 function robots(req, res) {
@@ -10,4 +11,8 @@ function robots(req, res) {
             id: '12345'
         }
     ]);
+}
+
+function addVote(req, res) {
+    res.send(200);
 }

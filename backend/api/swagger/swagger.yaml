@@ -28,6 +28,19 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/RobotsResponse"
+  /robots/{robotId}/vote:
+    x-swagger-router-controller: robots
+    parameters: 
+      - name: robotId
+        in: path
+        type: string
+        required: true
+    put:
+      operationId: addVote
+      description: Add a vote for a robot!
+      responses:
+        "200": 
+          description: Success
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -41,6 +54,8 @@ definitions:
           type: string
         name:
           type: string
+        votes:
+          type: integer
       required: 
         - id
         - name

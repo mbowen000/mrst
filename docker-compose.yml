@@ -1,0 +1,9 @@
+version: "3"
+services:
+  backend:
+    build: './backend'
+    ports:
+      - "10010:10010"
+    expose: 
+      - "10010"
+    command: swagger project start -m

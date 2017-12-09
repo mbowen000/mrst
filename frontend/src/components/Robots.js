@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-import robotPlaceholder from '../assets/robot-placeholder.png';
+import Robot from './Robot';
 
 class Robots extends Component {
-    render(props) {
+    render() {
         return (
-            <section class="robots">
-                <div class="robot">
-                <img src={robotPlaceholder} alt="Robot Name"/>
-                <h3>Robot Name</h3>
-                <button class="button primary">Vote</button>
-                </div>
-                <div class="robot">
-                <img src={robotPlaceholder} alt="Robot Name"/>
-                <h3>Robot Name</h3>
-                <button class="button primary" disabled="disabled">Vote</button>
-                </div>
+            <section className="robots">
+                {this.props.robots.map(robot => (
+                    <Robot key={robot.id} {...robot} />
+                ))}
             </section>
         )
     }

@@ -5,8 +5,21 @@ import './styles/Buttons.css';
 import logo from './assets/logo.svg';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AppMobileMenu from './components/AppMobileMenu';
-import Robots from './components/Robots';
+import RobotsList from './containers/RobotsList';
 import Results from './components/Results';
+// redux
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './reducers';
+import thunkMiddleware from 'redux-thunk';
+import { fetchRobots } from './actions/index';
+import { Provider } from 'react-redux';
+
+const store = createStore(
+  reducer,
+  applyMiddleware(thunkMiddleware)
+);
+
+store.dispatch(fetchRobots());
 
 class App extends Component {
   constructor(props) {
@@ -24,23 +37,25 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div class="App">
-          <header class="App-header">
-            <div class="logo">
-              <img src={logo} alt="Robots!"/>
-            </div>
-            <div class="nav">
-              <div class="hamburger" onClick={this.toggleNav}>
-                <span></span>
-                <span></span>
-                <span></span>
+        <Provider store={store}>
+          <div className="App">
+            <header className="App-header">
+              <div className="logo">
+                <img src={logo} alt="Robots!"/>
               </div>
-            </div>
-          </header>
-          <Route exact path="/" component={Robots}/>
-          <Route path="/results" component={Results}/>
-          <AppMobileMenu show={this.state.showMobileNav} onClose={this.toggleNav}/>
-        </div>
+              <div className="nav">
+                <div className="hamburger" onClick={this.toggleNav}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </header>
+            <Route exact path="/" component={RobotsList}/>
+            <Route path="/results" component={Results}/>
+            <AppMobileMenu show={this.state.showMobileNav} onClose={this.toggleNav}/>
+          </div>
+        </Provider>
       </Router>
     );
   }

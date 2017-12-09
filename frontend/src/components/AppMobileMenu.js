@@ -12,9 +12,9 @@ class AppMobileMenu extends Component {
     render(props) {
         if(this.props.show) {
             return (
-                <div class="App-Mobile-Menu">    
+                <div className="App-Mobile-Menu">    
                 {this.props.show}
-                    <div class="Close-Menu" onClick={this.toggleNav}>✖</div>
+                    <div className="Close-Menu" onClick={this.toggleNav}>✖</div>
                     <h1><NavLink onClick={this.toggleNav} to="/" activeClassName="active" exact>Robots</NavLink></h1>
                     <h1><NavLink onClick={this.toggleNav} to="/results" activeClassName="active">Results</NavLink></h1>
                     <h3>Admin</h3>

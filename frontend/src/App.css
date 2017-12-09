@@ -2,6 +2,29 @@ header.App-header {
   background-color:#ffffff;
 }
 
+.App-Mobile-Menu {
+  width:100vw;
+  height:100vh;
+  position:fixed;
+  top:0;
+  left:0;
+  background-color:#fff;
+  display:flex; /* assuming mobile support only */
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+.App-Mobile-Menu h1, h3 {
+  margin:1rem;
+}
+.App-Mobile-Menu .Close-Menu {
+  position:absolute;
+  top:0;
+  right:0;
+  font-size:2rem;
+  font-weight:100;
+}
+
 div.logo {
   width:50%;
   display:inline-block;

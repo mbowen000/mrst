@@ -16,3 +16,12 @@ h4 {
 h5 {
     font-size:14pt;
 }
+
+a:link, a:visited {
+    text-decoration:none;
+    color:#666666;
+}
+
+a:link.active, a:visited.active {
+    color:#ec2624;
+}

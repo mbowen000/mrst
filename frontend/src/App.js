@@ -3,37 +3,45 @@ import './App.css';
 import './styles/Typography.css';
 import './styles/Buttons.css';
 import logo from './assets/logo.svg';
-import robotPlaceholder from './assets/robot-placeholder.png';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import AppMobileMenu from './components/AppMobileMenu';
+import Robots from './components/Robots';
+import Results from './components/Results';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMobileNav: false
+    }
+    this.toggleNav = this.toggleNav.bind(this);
+  }
+  toggleNav() {
+    this.setState(prevState => ({
+      showMobileNav: !prevState.showMobileNav
+    }))
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <div class="logo">
-            <img src={logo} alt="Robots!"/>
-          </div>
-          <div class="nav">
-            <div class="hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
+      <Router>
+        <div class="App">
+          <header class="App-header">
+            <div class="logo">
+              <img src={logo} alt="Robots!"/>
             </div>
-          </div>
-        </header>
-        <section class="robots">
-          <div class="robot">
-            <img src={robotPlaceholder} alt="Robot Name"/>
-            <h3>Robot Name</h3>
-            <button class="button primary">Vote</button>
-          </div>
-          <div class="robot">
-            <img src={robotPlaceholder} alt="Robot Name"/>
-            <h3>Robot Name</h3>
-            <button class="button primary" disabled="disabled">Vote</button>
-          </div>
-        </section>
-      </div>
+            <div class="nav">
+              <div class="hamburger" onClick={this.toggleNav}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </header>
+          <Route exact path="/" component={Robots}/>
+          <Route path="/results" component={Results}/>
+          <AppMobileMenu show={this.state.showMobileNav} onClose={this.toggleNav}/>
+        </div>
+      </Router>
     );
   }
 }

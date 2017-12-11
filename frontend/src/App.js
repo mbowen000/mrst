@@ -4,9 +4,12 @@ import './styles/Typography.css';
 import './styles/Buttons.css';
 import logo from './assets/logo.svg';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+// sub-components
 import AppMobileMenu from './components/AppMobileMenu';
 import RobotsList from './containers/RobotsList';
 import Results from './components/Results';
+import Register from './components/Register';
 // redux
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
@@ -53,6 +56,7 @@ class App extends Component {
             </header>
             <Route exact path="/" component={RobotsList}/>
             <Route path="/results" component={Results}/>
+            <Route path="/register" component={Register}/>
             <AppMobileMenu show={this.state.showMobileNav} onClose={this.toggleNav}/>
           </div>
         </Provider>

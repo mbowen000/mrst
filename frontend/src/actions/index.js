@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { post } from 'axios';
 
 export const FETCH_ROBOTS = 'FETCH_ROBOTS';
 export const RECEIVE_ROBOTS = 'RECEIVE_ROBOTS';
@@ -39,8 +40,43 @@ export function createUser(user) {
             headers: {
                 'Content-Type':'application/json'
             }
-        }).then(function(user) {
+        }).then(function(res) {
             dispatch(setUser(user));
         })
+    }
+}
+
+export function login(user) {
+    return function(dispatch) {
+        return fetch("http://localhost:10010/users/login", {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type':'application/json'
+            }
+        }).then(function(res) {
+            // set the current user details on state
+        })
+    }
+}
+
+export function newRobot(data) {
+    return {
+        type: ADD_ROBOT,
+        robot: data
+    }
+}
+
+export function addRobot(data) {
+    return function(dispatch) {
+        return post("http://localhost:10010/robots", data, {
+            headers: {
+                'Content-Type':'multipart/form-data'
+            }
+        }).then(function(res) {
+            dispatch(newRobot(res.data));
+        }).catch(function(err) {
+            console.error(err);
+        });
     }
 }

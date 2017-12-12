@@ -10,6 +10,8 @@ import AppMobileMenu from './components/AppMobileMenu';
 import RobotsList from './containers/RobotsList';
 import Results from './components/Results';
 import Register from './components/Register';
+import Login from './components/Login';
+
 // redux
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
@@ -57,6 +59,7 @@ class App extends Component {
             <Route exact path="/" component={RobotsList}/>
             <Route path="/results" component={Results}/>
             <Route path="/register" component={Register}/>
+            <Route path="/login" component={Login}/>
             <AppMobileMenu show={this.state.showMobileNav} onClose={this.toggleNav}/>
           </div>
         </Provider>

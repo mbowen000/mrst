@@ -1,5 +1,6 @@
 import Robots from '../components/Robots';
 import Admin from '../components/Admin';
+import Results from '../components/Results';
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
@@ -17,5 +18,9 @@ const RobotsList = connect(
 export const RobotsListAdmin = connect(
     mapStateToProps
 )(Admin);
+
+export const RobotsListResults = connect(
+    mapStateToProps
+)(Results);
 
 export default RobotsList

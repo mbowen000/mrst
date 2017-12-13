@@ -1,9 +1,14 @@
 import React from 'react';
+import RobotResult from './RobotResult';
 
 class Results extends React.Component {
     render(props) {
         return (
-            <p>Results</p>
+            <section className="robots">
+                {this.props.robots.map(robot => (
+                    <RobotResult className="robot-result" robot={robot}/>
+                ))}
+            </section>
         )
     }
 }

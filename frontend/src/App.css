@@ -64,3 +64,18 @@ section.robots .robot {
 section.robots .robot img {
   width:80%;
 }
+
+/* Results */
+section.robots .robot img.robot-image-small {
+  width:50px;
+  height:50px;
+}
+section.robots .robot.result {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  flex-grow:1;
+}
+section.robots .robot.result h2 {
+  margin:0px 1rem;
+}

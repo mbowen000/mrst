@@ -15,7 +15,7 @@ var p = require('path');
 function robots(req, res) {
 
     // this sends back a JSON response which is a single string
-    r.table('robots').pluck('id', 'name', 'imagePath').run(db.getConnection(), function(err, cursor) {
+    r.table('robots').pluck('id', 'name', 'imagePath', 'votes').run(db.getConnection(), function(err, cursor) {
         if(err) throw err;
         cursor.toArray(function(err, result) {
             if(err) throw err;

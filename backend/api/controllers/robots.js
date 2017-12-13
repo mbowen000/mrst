@@ -25,7 +25,17 @@ function robots(req, res) {
 }
 
 function addVote(req, res) {
-    res.send(200);
+    var id = req.swagger.params.robotId.value;    
+    r.table('robots').get(id).update({
+        votes: r.row('votes').add(1)
+    }).run(db.getConnection(), function(err, response) {
+        if(err) {
+            res.status(500).type('application/json').send({err: err});
+        }
+        else {
+            res.type('application/json').status(200).end();            
+        }
+    });
 }
 
 function addRobot(req, res) {
@@ -49,7 +59,8 @@ function addRobot(req, res) {
         if (err) return console.log(err);
         r.table('robots').insert({
             name: robotName,
-            imagePath: filename
+            imagePath: filename,
+            votes: 0
         }, {returnChanges: true}).run(db.getConnection(), function(err, response) {
             if(err) {
                 throw err;

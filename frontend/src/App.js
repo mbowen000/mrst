@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // sub-components
 import AppMobileMenu from './components/AppMobileMenu';
-import RobotsList from './containers/RobotsList';
+import RobotsList, { RobotsListAdmin } from './containers/RobotsList';
 import Results from './components/Results';
 import Register from './components/Register';
 import Login from './components/Login';
@@ -60,6 +60,7 @@ class App extends Component {
             <Route path="/results" component={Results}/>
             <Route path="/register" component={Register}/>
             <Route path="/login" component={Login}/>
+            <Route path="/admin" component={RobotsListAdmin}/>
             <AppMobileMenu show={this.state.showMobileNav} onClose={this.toggleNav}/>
           </div>
         </Provider>

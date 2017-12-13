@@ -1,11 +1,13 @@
 import fetch from 'cross-fetch';
-import { post } from 'axios';
+import { post, patch, delete as del } from 'axios';
 
 export const FETCH_ROBOTS = 'FETCH_ROBOTS';
 export const RECEIVE_ROBOTS = 'RECEIVE_ROBOTS';
 export const VOTE = 'VOTE';
 export const ADD_ROBOT = 'ADD_ROBOT';
 export const SET_USER = 'SET_USER';
+export const UPDATE_ROBOT = 'UPDATE_ROBOT';
+export const DELETE_ROBOT = 'DELETE_ROBOT';
 
 /* Creators */
 export function receiveRobots(robots) {
@@ -67,6 +69,20 @@ export function newRobot(data) {
     }
 }
 
+export function updateRobot(data) {
+    return {
+        type: UPDATE_ROBOT,
+        robot: data
+    }
+}
+
+export function removeRobot(data) {
+    return {
+        type: DELETE_ROBOT,
+        robot: data
+    }
+}
+
 export function addRobot(data) {
     return function(dispatch) {
         return post("http://localhost:10010/robots", data, {
@@ -75,6 +91,32 @@ export function addRobot(data) {
             }
         }).then(function(res) {
             dispatch(newRobot(res.data));
+        }).catch(function(err) {
+            console.error(err);
+        });
+    }
+}
+
+export function editRobot(data) {
+    return function(dispatch) {
+        return patch("http://localhost:10010/robots", data, {
+            headers: {
+                'Content-Type':'multipart/form-data'
+            }
+        }).then(function(res) {
+            dispatch(updateRobot(res.data));
+        }).catch(function(err) {
+            console.error(err);
+        });
+    }
+}
+
+export function deleteRobot(data) {
+    return function(dispatch) {
+        return del("http://localhost:10010/robots/" + data.id, {
+            // 
+        }).then(function(res) {
+            dispatch(removeRobot(res.data));
         }).catch(function(err) {
             console.error(err);
         });

@@ -1,4 +1,4 @@
-import { RECEIVE_ROBOTS, ADD_ROBOT } from '../actions/index';
+import { RECEIVE_ROBOTS, ADD_ROBOT, UPDATE_ROBOT, DELETE_ROBOT } from '../actions/index';
 
 const initialState = {
     robots: []
@@ -15,6 +15,20 @@ function robotsReducer(state = initialState, action) {
         case ADD_ROBOT: 
             return Object.assign({}, state, {
                 robots: [...state.robots, action.robot]
+            })
+        case UPDATE_ROBOT:
+            return Object.assign({}, state, {
+                robots: state.robots.map(robot => {
+                    return (robot.id === action.robot.id)
+                        ? action.robot 
+                        : robot
+                })
+            })
+        case DELETE_ROBOT: 
+            return Object.assign({}, state, {
+                robots: state.robots.filter(robot => {
+                    return robot.id !== action.robot.id
+                })
             })
     }
 }

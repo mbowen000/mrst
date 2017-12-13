@@ -6,4 +6,12 @@ services:
       - "10010:10010"
     expose: 
       - "10010"
-    command: swagger project start -m
+    volumes: 
+      - "./backend/api:/usr/src/app/api"
+      - "./backend/config:/usr/src/app/config"
+      - "./backend/test:/usr/src/app/test"
+    command: swagger project start
+  rethinkdb:
+    image: "rethinkdb:latest"
+    ports:
+      - "8080:8080"

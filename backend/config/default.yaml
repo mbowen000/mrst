@@ -28,7 +28,8 @@ swagger:
       - swagger_security
       - _swagger_validate
       - express_compatibility
-      - _router
+      - _router 
+      - swagger_param_parser
 
     # pipe to serve swagger (endpoint is in swagger.yaml)
     swagger_raw:

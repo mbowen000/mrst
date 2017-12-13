@@ -8,8 +8,11 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "express": "^4.12.3",
-    "swagger-express-mw": "^0.1.0"
+    "rethinkdb": "^2.3.3",
+    "swagger-express-mw": "^0.1.0",
+    "unique-filename": "^1.1.0"
   },
   "devDependencies": {
     "should": "^7.1.0",

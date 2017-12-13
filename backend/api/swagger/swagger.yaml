@@ -28,37 +28,144 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/RobotsResponse"
-  /robots/{robotId}/vote:
+    post:
+      operationId: addRobot
+      description: Add a new robot!
+      consumes:
+        - multipart/form-data
+      parameters:
+         - in: formData
+           name: file
+           type: file
+           description: The file to upload as a picture.
+         - in: formData
+           name: name
+           type: string
+           description: The name of the robot.
+      responses:
+        201:
+          description: Created Robot
+          schema:
+            $ref: "#/definitions/Robot"
+    patch:
+      operationId: editRobot
+      description: Edit a robot
+      consumes:
+        - multipart/form-data
+      parameters:
+         - in: formData
+           name: file
+           type: file
+           description: The file to upload as a picture.
+         - in: formData
+           name: name
+           type: string
+           description: The name of the robot.
+         - in: formData
+           name: id
+           type: string
+           description: This ID of the robot to modify
+      responses:
+        201:
+          description: Modified Robot
+          schema:
+            $ref: "#/definitions/Robot"
+  /robots/{robotId}:
     x-swagger-router-controller: robots
     parameters: 
       - name: robotId
         in: path
         type: string
         required: true
+    delete:
+      operationId: deleteRobot
+      description: Delete a robot
+      responses: 
+        "200":
+          description: Successfully Deleted
     put:
       operationId: addVote
       description: Add a vote for a robot!
       responses:
         "200": 
           description: Success
+          schema:
+            type: object
+  /users:
+    x-swagger-router-controller: users
+    post:
+      operationId: register  
+      summary: Creates a new user.
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - email
+              - name
+              - password
+            properties:
+              email:
+                type: string
+              name:
+                type: string
+              password:
+                type: string
+      responses:
+        201:
+          description: Created
+  /users/login:
+    x-swagger-router-controller: users
+    post:
+      operationId: login
+      summary: Authenticates the User
+      consumes:
+        - application/json 
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - email
+              - password
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: Successfully Authenticated
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+  Robot:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      votes:
+        type: integer
+      imagePath:
+        type: string
+    required: 
+      - id
+      - name
   RobotsResponse:
     type: array
     items:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        votes:
-          type: integer
-      required: 
-        - id
-        - name
+      $ref: "#/definitions/Robot"
             
             
         

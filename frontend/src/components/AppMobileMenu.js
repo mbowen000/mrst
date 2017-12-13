@@ -17,7 +17,7 @@ class AppMobileMenu extends Component {
                     <div className="Close-Menu" onClick={this.toggleNav}>✖</div>
                     <h1><NavLink onClick={this.toggleNav} to="/" activeClassName="active" exact>Robots</NavLink></h1>
                     <h1><NavLink onClick={this.toggleNav} to="/results" activeClassName="active">Results</NavLink></h1>
-                    <h3>Admin</h3>
+                    <h3><NavLink onClick={this.toggleNav} to="/admin" activeClassName="active">Admin</NavLink></h3>
                     <h3>Logout</h3>
                 </div>
             );

@@ -102,8 +102,15 @@ function editRobot(req, res) {
 }
 
 function deleteRobot(req, res) {
-    console.log(req.params.swagger);
-    //var robot = req.params.swagger.robotId.value;
+    var id = req.swagger.params.robotId.value;
 
-    res.type('application/json').status(200).end();
+    r.table('robots').get(id).delete().run(db.getConnection(), function(err, response) {
+        if(err) {
+            res.type('application/json').status(500).send({err: err});
+        }
+        else {
+            res.type('application/json').status(200).end();            
+        }
+    });
+
 }

@@ -116,7 +116,7 @@ export function deleteRobot(data) {
         return del("http://localhost:10010/robots/" + data.id, {
             // 
         }).then(function(res) {
-            dispatch(removeRobot(res.data));
+            dispatch(removeRobot(data));
         }).catch(function(err) {
             console.error(err);
         });

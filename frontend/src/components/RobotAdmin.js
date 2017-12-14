@@ -14,13 +14,17 @@ class RobotAdmin extends Component {
         this.deleteRobot = this.deleteRobot.bind(this);
     }
     render(props) {
-        if(!this.state.editMode) {
+        const imageUrl = 'http://localhost:10010/uploads/' + this.props.imagePath;
+        
+        if(!this.state.editMode) {      
             return (
             <div className="robot">
-                <img src={'http://localhost:10010/uploads/' + this.props.imagePath} alt="Robot Name"/>
-                <h3>{this.props.name}</h3>
-                <button className="button" onClick={this.toggleEditMode}>Edit</button>
-                <button className="button primary" onClick={this.deleteRobot}>Delete</button>        
+                <div className="inner">
+                    <div className="img" style={{backgroundImage: `url(${imageUrl}`}}/>
+                    <h3>{this.props.name}</h3>
+                    <button className="button" onClick={this.toggleEditMode}>Edit</button>
+                    <button className="button primary" onClick={this.deleteRobot}>Delete</button>  
+                </div>      
             </div>
             )
         }

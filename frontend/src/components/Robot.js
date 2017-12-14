@@ -12,11 +12,15 @@ class Robot extends Component {
         }
     }
     render(props) {
+        const imageUrl = 'http://localhost:10010/uploads/' + this.props.imagePath;
         return(
             <div className="robot">
-                <img src={'http://localhost:10010/uploads/' + this.props.imagePath} alt="Robot Name"/>
-                <h3>{this.props.name}</h3>
-                <button className="button primary" onClick={this.handleVote} disabled={this.state.voteCast}>{this.state.voteCast ? 'Vote Cast' : 'Vote'}</button>
+                <div className="inner">
+                    {/* <img src={'http://localhost:10010/uploads/' + this.props.imagePath} alt="Robot Name"/> */}
+                    <div className="img" style={{backgroundImage: `url(${imageUrl}`}}/>
+                    <h3>{this.props.name}</h3>
+                    <button className="button primary" onClick={this.handleVote} disabled={this.state.voteCast}>{this.state.voteCast ? 'Vote Cast' : 'Vote'}</button>
+                </div>
             </div>
         )   
     }

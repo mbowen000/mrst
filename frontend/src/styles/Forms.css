@@ -10,10 +10,11 @@ div.form-input label {
 div.form-input input {
     font-size:1.0rem;
     padding:0.25rem 0.5rem;
-    border:2px solid #B2B2B2;
+    border:1px solid rgb(224, 224, 224);
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
+    box-sizing:border-box;
 }
 div.form-input input::placeholder {
     color:#B2B2B2;

@@ -6,7 +6,7 @@ export default function(props) {
             <h1><NavLink onClick={props.onToggleNav} to="/" activeClassName="active" exact>Robots</NavLink></h1>
             <h1><NavLink onClick={props.onToggleNav} to="/results" activeClassName="active">Results</NavLink></h1>
             <h3><NavLink onClick={props.onToggleNav} to="/admin" activeClassName="active">Admin</NavLink></h3>
-            <h3>Logout</h3>
+            <h3><NavLink onClick={props.onToggleNav} to="/login">Logout</NavLink></h3>
         </div>
     )
 }

@@ -1,22 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions/index';
+import { login, fetchRobots } from '../actions/index';
 import '../styles/Register.css';
 import '../styles/Forms.css';
 import '../styles/Buttons.css';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
     handleSubmit(event) {
+        var self = this;
         event.preventDefault();
-        this.props.dispatch(login({
-            email: this.state.email,
-            password: this.state.password
-        }));
+        if(this.state.email && this.state.password) {
+            this.props.dispatch(login({
+                email: this.state.email,
+                password: this.state.password
+            })).then(function() {
+                self.props.history.replace('/');
+            });
+        }     
+        else {
+            toast('Please fill out the required fields', {type: toast.TYPE.ERROR})
+        }
     }
     handleInputChange(event) {
         const name = event.target.name;
@@ -42,6 +56,10 @@ class Login extends React.Component {
 
                         <button className="button primary">Submit</button>
                     </form>
+
+                    <p className="nav-link">
+                        Need an account? <Link className="red" to="/register">Sign Up.</Link>
+                    </p>
                 </div>
                 
             </div>

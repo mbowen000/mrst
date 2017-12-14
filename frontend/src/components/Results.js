@@ -4,10 +4,12 @@ import RobotResult from './RobotResult';
 class Results extends React.Component {
     render(props) {
         return (
-            <section className="robots">
+            <section className="robots results">
+               
                 {this.props.robots.map(robot => (
-                    <RobotResult className="robot-result" robot={robot}/>
+                    <RobotResult key={robot.id} className="robot-result" robot={robot}/>
                 ))}
+        
             </section>
         )
     }

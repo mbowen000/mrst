@@ -25,3 +25,7 @@ a:link, a:visited {
 a:link.active, a:visited.active {
     color:#ec2624;
 }
+
+a:link.red, a:visited.red {
+    color:#ec2624;
+}

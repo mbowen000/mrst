@@ -8,6 +8,15 @@ class Robots extends Component {
         const { dispatch } = this.props    
         dispatch(fetchRobots());
     }
+    componentWillMount() {
+        var self = this;
+        this.unlisten = this.props.history.listen((location, action) => {
+            this.props.dispatch(fetchRobots());
+        });
+    }
+    componentWillUnmount() {
+        this.unlisten();
+    }
     render() {
         return (
             <section className="robots">

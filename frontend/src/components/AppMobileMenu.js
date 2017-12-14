@@ -15,7 +15,9 @@ class AppMobileMenu extends Component {
             return (
                 <div className="App-Mobile-Menu">    
                 {this.props.show}
-                    <div className="Close-Menu" onClick={this.toggleNav}>✖</div>
+                    <div className="x" onClick={this.toggleNav}>
+                        
+                    </div>
                     <NavMenu onToggleNav={this.toggleNav}/>
                 </div>
             );

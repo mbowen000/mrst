@@ -27,7 +27,7 @@ export function fetchRobots() {
         }).then(function(robots) {
             return robots.json().then(function(robots) {
                 if(robots.statusCode === 403) {
-                    window.location = '/login';
+                    // shouldnt happen
                 }
                 else {
                     dispatch(receiveRobots(robots));                    

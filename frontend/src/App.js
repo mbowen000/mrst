@@ -3,11 +3,13 @@ import './App.css';
 import './styles/Typography.css';
 import './styles/Buttons.css';
 import logo from './assets/logo.svg';
+
+// routing
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
 // sub-components
 import AppMobileMenu from './components/AppMobileMenu';
-import RobotsList, { RobotsListAdmin, RobotsListResults } from './containers/RobotsList';
 import Results from './components/Results';
 import Register from './components/Register';
 import Login from './components/Login';
@@ -19,6 +21,9 @@ import reducer from './reducers';
 import thunkMiddleware from 'redux-thunk';
 import { fetchRobots } from './actions/index';
 import { Provider } from 'react-redux';
+
+// Toasts
+import { ToastContainer } from 'react-toastify';
 
 const store = createStore(
   reducer,
@@ -43,6 +48,7 @@ class App extends Component {
       <Router>
         <Provider store={store}>
           <div className="App">
+          <ToastContainer/>
             <header className="App-header">
               <div className="logo">
                 <img src={logo} alt="Robots!"/>
@@ -58,11 +64,11 @@ class App extends Component {
                 </div>
               </div>
             </header>
-            <Route exact path="/" component={RobotsList}/>
-            <Route path="/results" component={RobotsListResults}/>
+
+            <Route component={EnsureLoggedInContainer}/>
+
             <Route path="/register" component={Register}/>
             <Route path="/login" component={Login}/>
-            <Route path="/admin" component={RobotsListAdmin}/>
             <AppMobileMenu show={this.state.showMobileNav} onClose={this.toggleNav}/>
           </div>
         </Provider>

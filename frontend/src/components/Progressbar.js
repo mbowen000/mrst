@@ -5,7 +5,7 @@ class ProgressBar extends Component {
     render() {
         return(
             <div className="progressbar">
-                <div class="progress" style={{width: this.props.progress + '%'}}/>
+                <div className="progress" style={{width: this.props.progress + '%'}}/>
             </div>
         )
     }

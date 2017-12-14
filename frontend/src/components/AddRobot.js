@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/Forms.css';
 import { addRobot, editRobot } from '../actions/index';
+import { toast } from 'react-toastify';
 
 class AddRobot extends Component {
     constructor(props) {
@@ -33,18 +34,27 @@ class AddRobot extends Component {
     handleSubmit(event) {
         var self = this;
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('file', this.state.robot.file);
-        formData.append('name', this.state.robot.name);
-        if(this.state.robot.id) {
-            formData.append('id', this.state.robot.id); // put it on the form-params
-            this.props.dispatch(editRobot(formData)).then(function(robot) {
-                self.props.onEditComplete();
-            });
-        } 
-        else {
-            this.props.dispatch(addRobot(formData));            
+        
+        if(this.state.robot.file && this.state.robot.name) {
+            
+            const formData = new FormData();
+            formData.append('file', this.state.robot.file);
+            formData.append('name', this.state.robot.name);
+            
+            if(this.state.robot.id) {
+                formData.append('id', this.state.robot.id); // put it on the form-params
+                this.props.dispatch(editRobot(formData)).then(function(robot) {
+                    self.props.onEditComplete();
+                });
+            } 
+            else {
+                this.props.dispatch(addRobot(formData));            
+            }
         }
+        else {
+            toast('Please make sure all fields are set, including the image.', {type: toast.TYPE.WARNING});
+        }
+        
     }
     render() {
         return(

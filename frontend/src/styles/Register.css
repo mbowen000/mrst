@@ -1,7 +1,7 @@
 .login-container {
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     height:90vh;
     text-align:left;
 }
@@ -13,4 +13,10 @@
 .login-container .login {
     width:100%;
     padding:2rem;
+    max-width:400px;
+    min-width:50px;
+}
+
+p.nav-link { 
+    text-align:center;
 }

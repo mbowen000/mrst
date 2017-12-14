@@ -15,3 +15,8 @@ services:
     image: "rethinkdb:latest"
     ports:
       - "8080:8080"
+  frontend:
+    build: './frontend'
+    command: npm start
+    ports:
+      - "3000:3000"

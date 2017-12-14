@@ -1,4 +1,4 @@
-import { RECEIVE_ROBOTS, ADD_ROBOT, UPDATE_ROBOT, DELETE_ROBOT, ADD_VOTE } from '../actions/index';
+import { RECEIVE_ROBOTS, ADD_ROBOT, UPDATE_ROBOT, DELETE_ROBOT, ADD_VOTE, SET_TOKEN } from '../actions/index';
 
 const initialState = {
     robots: []
@@ -38,6 +38,10 @@ function robotsReducer(state = initialState, action) {
                         : robot
                 })  
             })
+        case SET_TOKEN:
+            return Object.assign({}, state, {
+                token: action.token.token
+            });
     }
 }
 

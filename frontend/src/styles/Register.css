@@ -1,6 +1,16 @@
 .login-container {
-    display:grid;
+    display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    height:90vh;
+    text-align:left;
+}
+.login-container h1 {
+    text-align:center;
+    margin-bottom:4rem;
+}
+
+.login-container .login {
+    width:100%;
+    padding:2rem;
 }

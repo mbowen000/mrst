@@ -52,7 +52,10 @@ function login(req, res) {
                 userHelper.comparePassword(user.password, result[0].password, function(err, isMatch) {
                     if(err) throw err;
                     if(isMatch) {
-                        res.type('json').status(200).end();
+                        userHelper.generateToken(user, function(payload) {
+                            res.type('json').status(200).send(payload);
+                        });
+                        
                     }
                     else {
                         res.type('json').status(500).send({error: 'Password incorrect'});

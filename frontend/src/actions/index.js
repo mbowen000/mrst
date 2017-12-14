@@ -8,6 +8,7 @@ export const ADD_ROBOT = 'ADD_ROBOT';
 export const SET_USER = 'SET_USER';
 export const UPDATE_ROBOT = 'UPDATE_ROBOT';
 export const DELETE_ROBOT = 'DELETE_ROBOT';
+export const SET_TOKEN = 'SET_TOKEN';
 
 /* Creators */
 export function receiveRobots(robots) {
@@ -18,10 +19,19 @@ export function receiveRobots(robots) {
 }
 
 export function fetchRobots() {
-    return function(dispatch) {
-        return fetch('http://localhost:10010/robots').then(function(robots) {
+    return function(dispatch, getState) {
+        return fetch('http://localhost:10010/robots', {
+            headers: {
+                'Authorization' : getState().token
+            }
+        }).then(function(robots) {
             return robots.json().then(function(robots) {
-                dispatch(receiveRobots(robots));
+                if(robots.statusCode === 403) {
+                    window.location = '/login';
+                }
+                else {
+                    dispatch(receiveRobots(robots));                    
+                }
             });
         });
     }
@@ -58,6 +68,9 @@ export function login(user) {
             }
         }).then(function(res) {
             // set the current user details on state
+            res.json().then(function(data) {
+                dispatch(setToken(data));                
+            });
         })
     }
 }
@@ -90,11 +103,19 @@ export function addVote(data) {
     }
 }
 
+export function setToken(token) {
+    return {
+        type: SET_TOKEN,
+        token: token
+    }
+}
+
 export function addRobot(data) {
-    return function(dispatch) {
+    return function(dispatch, getState) {
         return post("http://localhost:10010/robots", data, {
             headers: {
-                'Content-Type':'multipart/form-data'
+                'Content-Type':'multipart/form-data',
+                'Authorization' : getState().token
             }
         }).then(function(res) {
             dispatch(newRobot(res.data));
@@ -105,10 +126,11 @@ export function addRobot(data) {
 }
 
 export function editRobot(data) {
-    return function(dispatch) {
+    return function(dispatch, getState) {
         return patch("http://localhost:10010/robots", data, {
             headers: {
-                'Content-Type':'multipart/form-data'
+                'Content-Type':'multipart/form-data',
+                'Authorization' : getState().token
             }
         }).then(function(res) {
             dispatch(updateRobot(res.data));
@@ -119,9 +141,11 @@ export function editRobot(data) {
 }
 
 export function deleteRobot(data) {
-    return function(dispatch) {
+    return function(dispatch, getState) {
         return del("http://localhost:10010/robots/" + data.id, {
-            // 
+            headers: {
+                'Authorization' : getState().token
+            }
         }).then(function(res) {
             dispatch(removeRobot(data));
         }).catch(function(err) {
@@ -131,9 +155,11 @@ export function deleteRobot(data) {
 }
 
 export function castVote(data) {
-    return function(dispatch) {
-        return put("http://localhost:10010/robots/" + data.id, {
-            // 
+    return function(dispatch, getState) {
+        return put("http://localhost:10010/robots/" + data.id, {}, {
+            headers: {
+                'Authorization' : getState().token
+            }
         }).then(function(res) {
             dispatch(addVote(data));
         }).catch(function(err) {

@@ -11,6 +11,14 @@ schemes:
   # tip: remove http to make production-grade
   - http
   - https
+securityDefinitions:
+  jwt:
+    description: "Restricts endpoints with JWT Auth"
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+security:
+  - jwt: []
 # format of bodies a client can send (Content-Type)
 consumes:
   - application/json
@@ -92,6 +100,7 @@ paths:
   /users:
     x-swagger-router-controller: users
     post:
+      security: []
       operationId: register  
       summary: Creates a new user.
       consumes:
@@ -120,6 +129,7 @@ paths:
   /users/login:
     x-swagger-router-controller: users
     post:
+      security: []
       operationId: login
       summary: Authenticates the User
       consumes:
@@ -141,7 +151,13 @@ paths:
                 type: string
       responses:
         200:
-          description: Successfully Authenticated
+          description: User Token
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: The token
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions

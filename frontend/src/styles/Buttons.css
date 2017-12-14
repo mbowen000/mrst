@@ -6,6 +6,7 @@ button.button {
     border-radius:0px;
     font-size:12pt;
     font-weight:bold;
+    width:100%;
 }
 button.button:focus {
     outline:0px; /* remove blue browser outline on focus */

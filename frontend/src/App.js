@@ -25,8 +25,6 @@ const store = createStore(
   applyMiddleware(thunkMiddleware)
 );
 
-store.dispatch(fetchRobots());
-
 class App extends Component {
   constructor(props) {
     super(props);

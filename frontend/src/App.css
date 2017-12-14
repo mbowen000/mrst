@@ -43,6 +43,9 @@ div.nav {
   width:50%;
 }
 
+.nav-large {
+  display:none;
+}
 .nav-large .inner-menu h1, .nav-large .inner-menu h3 {
   float:left;
   font-size:1rem;

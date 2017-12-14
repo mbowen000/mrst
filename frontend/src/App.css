@@ -1,5 +1,8 @@
 header.App-header {
   background-color:#ffffff;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
 }
 
 .App-Mobile-Menu {
@@ -29,6 +32,7 @@ div.logo {
   width:50%;
   display:inline-block;
 }
+
 div.logo img {
   margin:1rem;
 }
@@ -37,6 +41,12 @@ div.nav {
   display:inline-block;
   text-align:right;
   width:50%;
+}
+
+.nav-large .inner-menu h1, .nav-large .inner-menu h3 {
+  float:left;
+  font-size:1rem;
+  margin:15px 2rem;
 }
 
 div.hamburger {
@@ -54,12 +64,13 @@ div.hamburger span {
 /* Robots */
 section.robots {
   padding:1rem;
+
 }
 section.robots .robot {
   background-color:#ffffff;
   text-align:center;
+  margin:auto auto 2rem auto;
   padding:1rem;
-  margin-bottom:2rem;
 }
 section.robots .robot img {
   width:80%;
@@ -78,4 +89,23 @@ section.robots .robot.result {
 }
 section.robots .robot.result h2 {
   margin:0px 1rem;
+}
+
+@media (min-width: 768px) {  
+  div.logo {
+    width:25%;
+  }
+  div.nav {
+    width:75%;
+  }
+  .nav-large {
+    display:block;
+  }
+  div.hamburger {
+    display:none;
+  }
+  section.robots .robot {
+    width:50%;
+    float:left;
+  }
 }

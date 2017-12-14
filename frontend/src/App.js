@@ -11,6 +11,7 @@ import RobotsList, { RobotsListAdmin, RobotsListResults } from './containers/Rob
 import Results from './components/Results';
 import Register from './components/Register';
 import Login from './components/Login';
+import NavMenu from './components/NavMenu';
 
 // redux
 import { createStore, applyMiddleware } from 'redux';
@@ -49,6 +50,9 @@ class App extends Component {
                 <img src={logo} alt="Robots!"/>
               </div>
               <div className="nav">
+                <div className="nav-large">
+                  <NavMenu/>
+                </div>
                 <div className="hamburger" onClick={this.toggleNav}>
                   <span></span>
                   <span></span>
